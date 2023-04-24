@@ -28,6 +28,7 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: |
+          ip a
           pwd
           ls
           touch demo.txt
@@ -46,10 +47,8 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           token: ${{ secrets.TOKEN }}
-          name: "demo"
-          tag_name: "demo"
-          body_path: demo.txt
-          prerelease: "asd"
+          name: "cp"
+          tag_name: "v2"
           files: |
-            node-v18.16.0.tar.gz
+            cp.zip
             
