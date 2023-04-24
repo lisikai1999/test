@@ -50,5 +50,5 @@ jobs:
           name: "cp"
           tag_name: "v2"
           files: |
-            cp.zip
+            cp_v2.zip
             
