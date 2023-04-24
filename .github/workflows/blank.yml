@@ -6,9 +6,9 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the "master" branch
   push:
-    branches: [ "master" ]
+    branches: ["master"]
   pull_request:
-    branches: [ "master" ]
+    branches: ["master"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -27,10 +27,29 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo Hello, world!
+        run: |
+          pwd
+          ls
+          touch demo.txt
+          ls
+          echo Hello, world!
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
+          pwd
+          ls
           echo Add other actions to build,
           echo test, and deploy your project.
+      - name: Release
+        if: ${{ success() }}
+        uses: softprops/action-gh-release@v1
+        with:
+          token: ${{ secrets.TOKEN }}
+          name: "demo"
+          tag_name: "demo"
+          body_path: demo.txt
+          prerelease: "asd"
+          files: |
+            demo.txt
+            
